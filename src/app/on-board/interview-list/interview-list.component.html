@@ -1,0 +1,76 @@
+<div class="container mt-4">
+  <div class="card shadow">
+    <div class="card-header bg-dark text-white">
+      <h4>Interview List</h4>
+    </div>
+
+    <div class="card-body">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Candidate</th>
+            <th>Round</th>
+            <th>Date</th>
+            <th>Interviewer</th>
+            <th>Status</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td>Rahul Sharma</td>
+            <td>Technical</td>
+            <td>20 Mar</td>
+            <td>Ajay</td>
+            <td><span class="badge bg-warning">Pending</span></td>
+            <td>
+              <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#feedbackModal">
+                Add Feedback
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="feedbackModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="modal-header bg-primary text-white">
+        <h5>Add Feedback</h5>
+        <button class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body">
+        <form>
+
+          <div class="mb-3">
+            <label>Rating</label>
+            <input type="number" class="form-control">
+          </div>
+
+          <div class="mb-3">
+            <label>Feedback</label>
+            <textarea class="form-control"></textarea>
+          </div>
+
+          <div class="mb-3">
+            <label>Result</label>
+            <select class="form-select">
+              <option>Selected</option>
+              <option>Rejected</option>
+              <option>Next Round</option>
+            </select>
+          </div>
+
+          <button class="btn btn-success">Submit</button>
+
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>

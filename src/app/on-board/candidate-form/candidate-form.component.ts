@@ -1,0 +1,60 @@
+import { Component } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Utility } from '../../constant/utility';
+import { emailPatternValidator, numericPatternValidator } from '../../constant/validations';
+import { CandidateService } from '../candidate-service';
+import { Candidate } from '../onBoard-service';
+
+@Component({
+  selector: 'app-candidate-form',
+  standalone: false,
+  templateUrl: './candidate-form.component.html',
+  styleUrl: './candidate-form.component.scss'
+})
+export class CandidateFormComponent {
+  getErrorMessage = Utility.getErrorMessage;
+  candidateForm!: FormGroup;
+  resumeFile: any;
+  candidateMasterRequest: Candidate = new Candidate();
+
+  constructor(private fb: FormBuilder,  private candidateService: CandidateService) {}
+
+  ngOnInit() {
+    this.initForm();
+  }
+
+  initForm() {
+    this.candidateForm = this.fb.group({
+      fullName: new FormControl('', [Validators.required]),
+      email: new FormControl('', [Validators.required, emailPatternValidator]),      
+      phone: new FormControl('', [Validators.required, Validators.minLength(10), numericPatternValidator()]),
+      experience: new FormControl('', [Validators.required]),
+      appliedPosition: new FormControl('', [Validators.required]),
+      skills: new FormControl('', [Validators.required]),
+      otherInfo: ['']
+    });
+  }
+
+  onFileChange(event: any) {
+    this.resumeFile = event.target.files[0];
+  }
+  saveCandidate() {
+     if (this.candidateForm.invalid) {
+      this.candidateForm.markAllAsTouched();
+      return;
+    }
+    Object.assign(this.candidateMasterRequest, this.candidateForm.value);
+    this.candidateMasterRequest.resumeUrl = this.resumeFile?.name || '';
+    this.candidateService.saveCandidate(this.candidateMasterRequest).subscribe({
+      next: (res) => {
+        console.log('Candidate Saved', res);
+        alert('Candidate Saved Successfully');
+        this.candidateForm.reset();
+      },
+      error: (err) => {
+        console.error('Error Saving Candidate', err);
+      }
+    });
+    }
+
+}

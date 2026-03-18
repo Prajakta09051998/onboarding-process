@@ -1,0 +1,62 @@
+<div class="container mt-4">
+  <div class="card shadow">
+    <div class="card-header bg-success text-white">
+      <h4>Schedule Interview</h4>
+    </div>
+
+    <div class="card-body">
+      <form [formGroup]="interviewForm">
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label>Candidate Name</label>
+            <input type="text" class="form-control" formControlName="candidateName" [value]="candidateName" [disabled]="true">
+          </div>
+
+          <div class="col-md-6 mb-3">
+            <label>Interview Round</label>
+            <select class="form-select" formControlName="round">
+              <option value="HR">HR</option>
+              <option value="Technical">Technical</option>
+              <option value="Manager">Manager</option>
+            </select>
+          </div>
+
+          <div class="col-md-6 mb-3">
+            <label>Date</label>
+            <input type="date" class="form-control" formControlName="date">
+          </div>
+
+          <div class="col-md-6 mb-3">
+            <label>Time</label>
+            <input type="time" class="form-control" formControlName="time">
+          </div>
+
+          <div class="col-md-6 mb-3">
+            <label>Interview Mode</label>
+            <select class="form-select" formControlName="mode">
+              <option value="Online">Online</option>
+              <option value="Offline">Offline</option>
+            </select>
+          </div>
+
+          <div class="col-md-6 mb-3">
+            <label>Interviewer Name</label>
+            <input type="text" class="form-control" formControlName="interviewer">
+          </div>
+
+          <div class="col-md-12 mb-3">
+            <label>Meeting Link</label>
+            <input type="text" class="form-control" formControlName="meetingLink">
+          </div>
+
+          <div class="col-md-12 mb-3">
+            <label>Remarks</label>
+            <textarea class="form-control" formControlName="remarks"></textarea>
+          </div>
+        </div>
+
+        <button class="btn btn-success" (click)="submitForm()">Schedule Interview</button>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,129 @@
+<div class="container mt-4">
+
+  <div class="card shadow-lg border-0">
+    <div class="card-header bg-primary text-white">
+      <h4 class="mb-0">Candidate Application Form</h4>
+    </div>
+
+    <div class="card-body">
+
+      <form [formGroup]="candidateForm">
+
+        <!-- Basic Info -->
+        <h5 class="text-primary border-bottom pb-2 mb-3">Basic Information</h5>
+
+        <div class="row">
+
+          <div class="col-md-6 mb-3">
+            <label class="form-label">Full Name</label>
+            <input type="text" class="form-control" formControlName="fullName">
+            <span class="error" *ngIf="
+                  (candidateForm.get('fullName')?.touched || candidateForm.get('fullName')?.dirty) &&
+                  getErrorMessage('fullName', 'Full Name', candidateForm)
+                ">
+                {{
+                getErrorMessage("fullName", "Full Name", candidateForm)
+                }}
+              </span>
+          </div>
+
+          <div class="col-md-6 mb-3">
+            <label class="form-label">Email</label>
+            <input type="email" class="form-control" formControlName="email">
+            <span class="error" *ngIf="
+                  (candidateForm.get('email')?.touched || candidateForm.get('email')?.dirty) &&
+                  getErrorMessage('email', 'Email', candidateForm)
+                ">
+                {{
+                getErrorMessage("email", "Email", candidateForm)
+                }}
+              </span>
+          </div>
+
+          <div class="col-md-6 mb-3">
+            <label class="form-label">Phone</label>
+            <input type="text" class="form-control" formControlName="phone">
+              <span class="error" *ngIf="
+                  (candidateForm.get('phone')?.touched || candidateForm.get('phone')?.dirty) &&
+                  getErrorMessage('phone', 'phone', candidateForm)
+                ">
+                {{
+                getErrorMessage("phone", "Phone", candidateForm)
+                }}
+              </span>
+          </div>
+
+          <div class="col-md-6 mb-3">
+            <label class="form-label">Experience (Years)</label>
+            <input type="number" class="form-control" formControlName="experience">
+             <span class="error" *ngIf="
+                  (candidateForm.get('experience')?.touched || candidateForm.get('experience')?.dirty) &&
+                  getErrorMessage('experience', 'experience', candidateForm)
+                ">
+                {{
+                getErrorMessage("experience", "Experience", candidateForm)
+                }}
+              </span>
+          </div>
+        </div>
+
+        <!-- Job Info -->
+        <h5 class="text-success border-bottom pb-2 mb-3 mt-4">Job Information</h5>
+
+        <div class="row">
+
+          <div class="col-md-6 mb-3">
+            <label class="form-label">Applied Position</label>
+            <select class="form-select" formControlName="position">
+              <option value="">Select Position</option>
+              <option>Frontend Developer</option>
+              <option>Backend Developer</option>
+              <option>UI Designer</option>
+              <option>QA Engineer</option>
+            </select>
+               <span class="error" *ngIf="
+                  (candidateForm.get('appliedPosition')?.touched || candidateForm.get('appliedPosition')?.dirty) &&
+                  getErrorMessage('appliedPosition', 'Position', candidateForm)
+                ">
+                {{
+                getErrorMessage("appliedPosition", "Position", candidateForm)
+                }}
+              </span>
+          </div>
+
+          <div class="col-md-6 mb-3">
+            <label class="form-label">Skills</label>
+            <input type="text" class="form-control" formControlName="skills">
+             <span class="error" *ngIf="
+                  (candidateForm.get('skills')?.touched || candidateForm.get('skills')?.dirty) &&
+                  getErrorMessage('skills', 'Skills', candidateForm)
+                ">
+                {{
+                getErrorMessage("skills", "Skills", candidateForm)
+                }}
+              </span>
+          </div>
+
+          <div class="col-md-12 mb-3">
+            <label class="form-label">Other Information</label>
+            <textarea class="form-control" rows="3" formControlName="otherInfo"></textarea>
+          </div>
+
+          <div class="col-md-12 mb-3">
+            <label class="form-label">Resume Upload</label>
+            <input type="file" accept=".pdf,.doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" class="form-control" formControlName="resumeUrl" (change)="onFileChange($event)">
+          </div>
+
+        </div>
+
+        <div class="text-end mt-4">
+          <button type="button" class="btn btn-outline-secondary me-2">Reset</button>
+          <button type="submit" class="btn btn-primary px-4" (click)="saveCandidate()">Save Candidate</button>
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+
+</div>

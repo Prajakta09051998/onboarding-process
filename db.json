@@ -1,0 +1,79 @@
+{
+  "candidates": [
+    {
+      "id": 1,
+      "fullName": "Rahul Sharma",
+      "email": "rahul@gmail.com",
+      "phone": "9876543210",
+      "experience": 3,
+      "appliedPosition": "Frontend Developer",
+      "skills": [
+        "Angular",
+        "JavaScript",
+        "HTML",
+        "CSS"
+      ],
+      "resumeUrl": "resume1.pdf",
+      "status": "APPLIED",
+      "createdDate": "2026-03-16"
+    },
+    {
+      "id": 2,
+      "fullName": "Sneha Patil",
+      "email": "sneha@gmail.com",
+      "phone": "9988776655",
+      "experience": 5,
+      "appliedPosition": "Angular Developer",
+      "skills": [
+        "Angular",
+        "TypeScript",
+        "RxJS"
+      ],
+      "resumeUrl": "resume2.pdf",
+      "status": "HR_SCHEDULED",
+      "createdDate": "2026-03-15"
+    },
+    {
+      "id": 3,
+      "fullName": "prajakta",
+      "email": "prajakta@gmail.com",
+      "phone": "9878878890",
+      "experience": 3,
+      "appliedPosition": "",
+      "skills": "hjasdkjhs",
+      "resumeUrl": "db.json",
+      "status": "",
+      "createdDate": "",
+      "position": "Frontend Developer",
+      "otherInfo": ""
+    }
+  ],
+  "interviews": [
+    {
+      "id": 1,
+      "candidateId": 2,
+      "candidateName": "Sneha Patil",
+      "round": "HR",
+      "date": "2026-03-18",
+      "time": "11:00 AM",
+      "mode": "Online",
+      "interviewer": "Neha Sharma",
+      "meetingLink": "https://zoom.com/meeting1",
+      "remarks": "Initial HR discussion",
+      "status": "SCHEDULED"
+    }
+  ],
+  "feedbacks": [
+    {
+      "id": 1,
+      "interviewId": 1,
+      "candidateId": 2,
+      "candidateName": "Sneha Patil",
+      "round": "HR",
+      "rating": 4,
+      "feedback": "Good communication skills",
+      "result": "NEXT_ROUND",
+      "createdDate": "2026-03-18"
+    }
+  ]
+}
