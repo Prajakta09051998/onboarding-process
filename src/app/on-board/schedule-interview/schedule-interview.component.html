@@ -92,7 +92,7 @@
             </span>
           </div>
 
-          <div class="col-md-6 mb-3">
+          <div class="col-md-6 mb-3" *ngIf="interviewForm.get('mode')?.value === 'Online'">
             <label>Meeting Link</label>
             <input type="text" class="form-control" formControlName="meetingLink">
             <span class="error" *ngIf="
