@@ -16,7 +16,7 @@
 
           <div class="col-md-6 mb-3">
             <label class="form-label">Full Name</label>
-            <input type="text" class="form-control" formControlName="fullName">
+            <input type="text" class="form-control" placeholder="Please enter full name" formControlName="fullName">
             <span class="error" *ngIf="
                   (candidateForm.get('fullName')?.touched || candidateForm.get('fullName')?.dirty) &&
                   getErrorMessage('fullName', 'Full Name', candidateForm)
@@ -29,7 +29,7 @@
 
           <div class="col-md-6 mb-3">
             <label class="form-label">Email</label>
-            <input type="email" class="form-control" formControlName="email">
+            <input type="email" class="form-control" placeholder="Please enter email" formControlName="email">
             <span class="error" *ngIf="
                   (candidateForm.get('email')?.touched || candidateForm.get('email')?.dirty) &&
                   getErrorMessage('email', 'Email', candidateForm)
@@ -42,7 +42,7 @@
 
           <div class="col-md-6 mb-3">
             <label class="form-label">Phone</label>
-            <input type="text" class="form-control" formControlName="phone">
+            <input type="text" class="form-control" placeholder="Please enter phone number" formControlName="phone">
               <span class="error" *ngIf="
                   (candidateForm.get('phone')?.touched || candidateForm.get('phone')?.dirty) &&
                   getErrorMessage('phone', 'phone', candidateForm)
@@ -55,7 +55,7 @@
 
           <div class="col-md-6 mb-3">
             <label class="form-label">Experience (Years)</label>
-            <input type="number" class="form-control" formControlName="experience">
+            <input type="number" class="form-control" placeholder="Please enter experience in years" formControlName="experience">
              <span class="error" *ngIf="
                   (candidateForm.get('experience')?.touched || candidateForm.get('experience')?.dirty) &&
                   getErrorMessage('experience', 'experience', candidateForm)
@@ -74,7 +74,7 @@
 
           <div class="col-md-6 mb-3">
             <label class="form-label">Applied Position</label>
-            <select class="form-select" formControlName="position">
+            <select class="form-select" placeholder="Please select position" formControlName="position">
               <option value="">Select Position</option>
               <option>Frontend Developer</option>
               <option>Backend Developer</option>
@@ -82,18 +82,18 @@
               <option>QA Engineer</option>
             </select>
                <span class="error" *ngIf="
-                  (candidateForm.get('appliedPosition')?.touched || candidateForm.get('appliedPosition')?.dirty) &&
-                  getErrorMessage('appliedPosition', 'Position', candidateForm)
+                  (candidateForm.get('position')?.touched || candidateForm.get('position')?.dirty) &&
+                  getErrorMessage('position', 'Position', candidateForm)
                 ">
                 {{
-                getErrorMessage("appliedPosition", "Position", candidateForm)
+                getErrorMessage("position", "Position", candidateForm)
                 }}
               </span>
           </div>
 
           <div class="col-md-6 mb-3">
             <label class="form-label">Skills</label>
-            <input type="text" class="form-control" formControlName="skills">
+            <input type="text" class="form-control" placeholder="Please enter skills" formControlName="skills">
              <span class="error" *ngIf="
                   (candidateForm.get('skills')?.touched || candidateForm.get('skills')?.dirty) &&
                   getErrorMessage('skills', 'Skills', candidateForm)
@@ -106,12 +106,20 @@
 
           <div class="col-md-12 mb-3">
             <label class="form-label">Other Information</label>
-            <textarea class="form-control" rows="3" formControlName="otherInfo"></textarea>
+            <textarea class="form-control" placeholder="Please enter other information" rows="3" formControlName="otherInfo"></textarea>
           </div>
 
           <div class="col-md-12 mb-3">
             <label class="form-label">Resume Upload</label>
-            <input type="file" accept=".pdf,.doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" class="form-control" formControlName="resumeUrl" (change)="onFileChange($event)">
+            <input type="file" accept=".pdf,.doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" class="form-control" placeholder="Please upload your resume" formControlName="resumeUrl" (change)="onFileChange($event)">
+            <span class="error" *ngIf="
+                  (candidateForm.get('resumeUrl')?.touched || candidateForm.get('resumeUrl')?.dirty) &&
+                  getErrorMessage('resumeUrl', 'Resume', candidateForm)
+                ">
+                {{
+                getErrorMessage("resumeUrl", "Resume", candidateForm)
+                }}
+              </span>
           </div>
 
         </div>

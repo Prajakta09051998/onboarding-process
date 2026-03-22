@@ -26,4 +26,18 @@ export class CandidateListComponent {
       }
     });
   }
+  rejectCandidate(id: number) {
+  if (confirm('Are you sure you want to reject this candidate?')) {
+    this.candidateService.updateCandidate(id, { status: 'Rejected' })
+      .subscribe({
+        next: () => {
+          this.candidatesList();
+          alert('Candidate rejected successfully');
+        },
+        error: (err) => {
+          console.error('Error rejecting candidate', err);
+        }
+      });
+  }
+}
 }

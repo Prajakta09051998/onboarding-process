@@ -1,71 +1,102 @@
 {
   "candidates": [
     {
-      "id": 1,
-      "fullName": "Rahul Sharma",
-      "email": "rahul@gmail.com",
-      "phone": "9876543210",
-      "experience": 3,
-      "appliedPosition": "Frontend Developer",
-      "skills": [
-        "Angular",
-        "JavaScript",
-        "HTML",
-        "CSS"
-      ],
-      "resumeUrl": "resume1.pdf",
-      "status": "APPLIED",
-      "createdDate": "2026-03-16"
-    },
-    {
-      "id": 2,
-      "fullName": "Sneha Patil",
+      "id": "9a54",
+      "fullName": "Sneha",
       "email": "sneha@gmail.com",
-      "phone": "9988776655",
-      "experience": 5,
-      "appliedPosition": "Angular Developer",
-      "skills": [
-        "Angular",
-        "TypeScript",
-        "RxJS"
-      ],
-      "resumeUrl": "resume2.pdf",
-      "status": "HR_SCHEDULED",
-      "createdDate": "2026-03-15"
+      "phone": "9678678677",
+      "experience": 3,
+      "position": "UI Designer",
+      "skills": "Wordpress,HTML,CSS",
+      "resumeUrl": "leaving certificate.pdf",
+      "status": "Rejected",
+      "createdDate": "",
+      "otherInfo": ""
     },
     {
-      "id": 3,
-      "fullName": "prajakta",
-      "email": "prajakta@gmail.com",
-      "phone": "9878878890",
-      "experience": 3,
-      "appliedPosition": "",
-      "skills": "hjasdkjhs",
-      "resumeUrl": "db.json",
+      "id": "574b",
+      "fullName": "Prajakta kushe",
+      "email": "prajaktakushe1998@gmail.com",
+      "phone": "8545465443",
+      "experience": 5,
+      "position": "Frontend Developer",
+      "skills": "angular,boostrap,javascript",
+      "resumeUrl": "scanned_file.pdf",
       "status": "",
       "createdDate": "",
-      "position": "Frontend Developer",
-      "otherInfo": ""
+      "otherInfo": null
     }
   ],
   "interviews": [
     {
-      "id": 1,
-      "candidateId": 2,
-      "candidateName": "Sneha Patil",
-      "round": "HR",
-      "date": "2026-03-18",
-      "time": "11:00 AM",
+      "id": "e24e",
+      "candidateId": "1",
+      "candidateName": "Rahul Sharma",
+      "round": "Technical",
+      "date": "2026-03-26",
+      "time": "22:05",
       "mode": "Online",
-      "interviewer": "Neha Sharma",
-      "meetingLink": "https://zoom.com/meeting1",
-      "remarks": "Initial HR discussion",
+      "interviewer": "nik",
+      "meetingLink": "df-cvcv-ds",
+      "remarks": "",
+      "status": "SCHEDULED"
+    },
+    {
+      "id": "8fc5",
+      "candidateId": "9a54",
+      "candidateName": "Sneha",
+      "round": "Technical",
+      "date": "2026-03-21",
+      "time": "13:05",
+      "mode": "Online",
+      "interviewer": "Nik",
+      "meetingLink": "adfd-asa-vbv",
+      "remarks": "",
+      "status": "SCHEDULED"
+    },
+    {
+      "id": "a976",
+      "candidateId": "574b",
+      "candidateName": "Prajakta kushe",
+      "round": "HR",
+      "date": "2026-03-21",
+      "time": "14:12",
+      "mode": "Online",
+      "interviewer": "Sid",
+      "meetingLink": "asd-fgf-dsd",
+      "remarks": "",
+      "status": "SCHEDULED"
+    },
+    {
+      "id": "bcee",
+      "candidateId": "574b",
+      "candidateName": "Prajakta kushe",
+      "round": "Technical",
+      "date": "2026-03-27",
+      "time": "14:19",
+      "mode": "Online",
+      "interviewer": "Nik",
+      "meetingLink": "afdf-dfddf-cvc",
+      "remarks": "",
+      "status": "SCHEDULED"
+    },
+    {
+      "id": "3372",
+      "candidateId": "574b",
+      "candidateName": "Prajakta kushe",
+      "round": "Technical",
+      "date": "2026-03-27",
+      "time": "14:19",
+      "mode": "Online",
+      "interviewer": "Nik",
+      "meetingLink": "afdf-dfddf-cvc",
+      "remarks": "",
       "status": "SCHEDULED"
     }
   ],
   "feedbacks": [
     {
-      "id": 1,
+      "id": "1",
       "interviewId": 1,
       "candidateId": 2,
       "candidateName": "Sneha Patil",
@@ -75,5 +106,6 @@
       "result": "NEXT_ROUND",
       "createdDate": "2026-03-18"
     }
-  ]
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
 }

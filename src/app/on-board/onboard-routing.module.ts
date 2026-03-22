@@ -23,6 +23,8 @@ const routes: Routes = [
       { path: 'hiring-status/:id', component: HiringProcessComponent },
 
       { path: 'interview-list', component: InterviewListComponent },
+
+      { path: 'interview-feedback/:id', component: HiringProcessComponent },
     ],
   },
 ];

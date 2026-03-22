@@ -7,6 +7,7 @@ import { onBoardRoutingModule } from './onboard-routing.module';
 import { CandidateFormComponent } from './candidate-form/candidate-form.component';
 import { CandidateListComponent } from './candidate-list/candidate-list.component';
 import { ScheduleInterviewComponent } from './schedule-interview/schedule-interview.component';
+import { HiringProcessComponent } from './hiring-process/hiring-process.component';
 
 
 
@@ -15,7 +16,8 @@ import { ScheduleInterviewComponent } from './schedule-interview/schedule-interv
     OnBoardComponent,
     CandidateFormComponent,
     CandidateListComponent,
-    ScheduleInterviewComponent
+    ScheduleInterviewComponent,
+    HiringProcessComponent
   ],
   imports: [
     CommonModule,

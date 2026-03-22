@@ -10,25 +10,57 @@
           <div class="col-md-6 mb-3">
             <label>Candidate Name</label>
             <input type="text" class="form-control" formControlName="candidateName" [value]="candidateName" [disabled]="true">
+            <span class="error" *ngIf="
+                  (interviewForm.get('candidateName')?.touched || interviewForm.get('candidateName')?.dirty) &&
+                  getErrorMessage('candidateName', 'Candidate Name', interviewForm)
+                ">
+                {{
+                getErrorMessage("candidateName", "Candidate Name", interviewForm)
+                }}
+              </span>
           </div>
-
           <div class="col-md-6 mb-3">
             <label>Interview Round</label>
             <select class="form-select" formControlName="round">
+             <option value="">Select Round</option>
               <option value="HR">HR</option>
               <option value="Technical">Technical</option>
               <option value="Manager">Manager</option>
             </select>
+            <span class="error" *ngIf="
+                (interviewForm.get('round')?.touched || interviewForm.get('round')?.dirty) &&
+                getErrorMessage('round', 'Interview Round', interviewForm)
+              ">
+              {{
+              getErrorMessage("round", "Interview Round", interviewForm)
+              }}
+            </span>
           </div>
 
           <div class="col-md-6 mb-3">
             <label>Date</label>
-            <input type="date" class="form-control" formControlName="date">
+            <input type="date" class="form-control" formControlName="date" [min]="minDate">
+             <span class="error" *ngIf="
+                (interviewForm.get('date')?.touched || interviewForm.get('date')?.dirty) &&
+                getErrorMessage('date', 'Date', interviewForm)
+              ">
+              {{
+              getErrorMessage("date", "Date", interviewForm)
+              }}
+            </span>
           </div>
 
           <div class="col-md-6 mb-3">
             <label>Time</label>
             <input type="time" class="form-control" formControlName="time">
+            <span class="error" *ngIf="
+                (interviewForm.get('time')?.touched || interviewForm.get('time')?.dirty) &&
+                getErrorMessage('time', 'Time', interviewForm)
+              ">
+              {{
+              getErrorMessage("time", "Time", interviewForm)
+              }}
+            </span>
           </div>
 
           <div class="col-md-6 mb-3">
@@ -37,16 +69,40 @@
               <option value="Online">Online</option>
               <option value="Offline">Offline</option>
             </select>
+            <span class="error" *ngIf="
+                (interviewForm.get('mode')?.touched || interviewForm.get('mode')?.dirty) &&
+                getErrorMessage('mode', 'Interview Mode', interviewForm)
+              ">
+              {{
+              getErrorMessage("mode", "Interview Mode", interviewForm)
+              }}
+            </span>
           </div>
 
           <div class="col-md-6 mb-3">
             <label>Interviewer Name</label>
             <input type="text" class="form-control" formControlName="interviewer">
+            <span class="error" *ngIf="
+                (interviewForm.get('interviewer')?.touched || interviewForm.get('interviewer')?.dirty) &&
+                getErrorMessage('interviewer', 'Interviewer Name', interviewForm)
+              ">
+              {{
+              getErrorMessage("interviewer", "Interviewer Name", interviewForm)
+              }}
+            </span>
           </div>
 
           <div class="col-md-12 mb-3">
             <label>Meeting Link</label>
             <input type="text" class="form-control" formControlName="meetingLink">
+            <span class="error" *ngIf="
+                (interviewForm.get('meetingLink')?.touched || interviewForm.get('meetingLink')?.dirty) &&
+                getErrorMessage('meetingLink', 'Meeting Link', interviewForm)
+              ">
+              {{
+              getErrorMessage("meetingLink", "Meeting Link", interviewForm)
+              }}
+            </span>
           </div>
 
           <div class="col-md-12 mb-3">

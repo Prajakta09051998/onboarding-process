@@ -27,11 +27,12 @@ export class CandidateFormComponent {
     this.candidateForm = this.fb.group({
       fullName: new FormControl('', [Validators.required]),
       email: new FormControl('', [Validators.required, emailPatternValidator]),      
-      phone: new FormControl('', [Validators.required, Validators.minLength(10), numericPatternValidator()]),
+      phone: new FormControl('', [Validators.required, Validators.minLength(10), numericPatternValidator(),Validators.pattern(/^[0-9]{10}$/)]),
       experience: new FormControl('', [Validators.required]),
-      appliedPosition: new FormControl('', [Validators.required]),
       skills: new FormControl('', [Validators.required]),
-      otherInfo: ['']
+      otherInfo: [''],
+      position: new FormControl('', [Validators.required]),
+      resumeUrl: new FormControl('', [Validators.required])
     });
   }
 
@@ -39,12 +40,13 @@ export class CandidateFormComponent {
     this.resumeFile = event.target.files[0];
   }
   saveCandidate() {
-     if (this.candidateForm.invalid) {
+    if (this.candidateForm.invalid) {
       this.candidateForm.markAllAsTouched();
       return;
     }
     Object.assign(this.candidateMasterRequest, this.candidateForm.value);
     this.candidateMasterRequest.resumeUrl = this.resumeFile?.name || '';
+    console.log(this.candidateMasterRequest,'form');
     this.candidateService.saveCandidate(this.candidateMasterRequest).subscribe({
       next: (res) => {
         console.log('Candidate Saved', res);
@@ -56,5 +58,4 @@ export class CandidateFormComponent {
       }
     });
     }
-
 }

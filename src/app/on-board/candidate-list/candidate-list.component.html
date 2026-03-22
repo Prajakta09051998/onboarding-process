@@ -19,22 +19,23 @@
         <tbody>
           <tr *ngFor="let candidate of candidates">
              <td>{{ candidate.fullName }}</td>
-            <td>{{ candidate.appliedPosition}}</td>
+            <td>{{ candidate.position}}</td>
             <td>{{ candidate.experience }} Years</td>
             <td>
               <span class="badge" [ngClass]="{
                 'bg-warning': candidate.status === 'APPLIED' || !candidate.status,
                 'bg-info': candidate.status === 'HR_SCHEDULED',
                 'bg-success': candidate.status === 'HIRED',
-                'bg-danger': candidate.status === 'REJECTED'
+                'bg-danger': candidate.status === 'Rejected'
               }">
                 {{ candidate.status || 'Pending' }}
               </span>
             </td>
             <td>
-              <button class="btn btn-sm btn-success me-2" [routerLink]="['../schedule-interview', candidate.id]" [state]="{ candidate: candidate }">Schedule</button>
+              <button *ngIf="candidate.status !== 'Rejected'" class="btn btn-sm btn-success me-2" [routerLink]="['../schedule-interview', candidate.id]" [state]="{ candidate: candidate }">Schedule</button>
               <button class="btn btn-sm btn-info me-2">View</button>
-              <button class="btn btn-sm btn-danger">Reject</button>
+              <button *ngIf="candidate.status !== 'Rejected'" class="btn btn-sm btn-danger me-2" (click)="candidate.id && rejectCandidate(candidate.id)">Reject</button>
+              <button class="btn btn-sm btn-primary me-2" *ngIf="candidate.status === 'HR_SCHEDULED'" [routerLink]="['../interview-feedback', candidate.id]"> Feedback</button>
             </td>
           </tr>
         </tbody>

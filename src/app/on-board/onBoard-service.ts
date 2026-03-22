@@ -1,12 +1,12 @@
 // ================= CANDIDATE MODEL =================
 
 export class Candidate {
-  id?: number = 0;
+  id?: number;
   fullName: string = '';
   email: string = '';
   phone: string = '';
   experience: number = 0;
-  appliedPosition: string = '';
+  position: string = '';
   skills: string = '';
   resumeUrl: string = '';
   status: string = '';
@@ -17,7 +17,7 @@ export class Candidate {
 // ================= INTERVIEW MODEL =================
 
 export class Interview {
-  id?: number = 0;
+  id?: number;
   candidateId: number = 0;
   candidateName: string = '';
   round: string = '';
@@ -33,14 +33,14 @@ export class Interview {
 
 // ================= FEEDBACK MODEL =================
 
-export interface Feedback {
+export class Feedback {
   id?: number;
-  interviewId: number;
-  candidateId: number;
-  candidateName: string;
-  round: string;
-  rating: number;
-  feedback: string;
-  result: string;
-  createdDate: string;
+  interviewId: number = 0;
+  candidateId: number = 0;
+  candidateName: string = '';
+  round: string = '';
+  rating: number = 0;
+  feedback: string = '';
+  result: string = '';
+  createdDate: string = '';
 }

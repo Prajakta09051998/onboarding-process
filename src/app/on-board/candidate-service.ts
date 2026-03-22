@@ -26,7 +26,7 @@ export class CandidateService {
   }
 
   updateCandidate(id: number, data: any) {
-    return this.http.put(`${this.baseUrl}/candidates/${id}`, data);
+    return this.http.patch(`${this.baseUrl}/candidates/${id}`, data);
   }
 
   deleteCandidate(id: number) {

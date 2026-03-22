@@ -2,7 +2,8 @@ import { Component, Input } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators, ɵInternalFormsSharedModule } from '@angular/forms';
 import { Candidate, Interview } from '../onBoard-service';
 import { CandidateService } from '../candidate-service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Utility } from '../../constant/utility';
 
 @Component({
   selector: 'app-schedule-interview',
@@ -16,17 +17,27 @@ export class ScheduleInterviewComponent {
   interviewMasterRequest: Interview = new Interview();
   candidateName: any;
   candidateId: string | null = null;
-  constructor(private fb: FormBuilder,  private candidateService: CandidateService,private route: ActivatedRoute) {}
+  getErrorMessage = Utility.getErrorMessage;
+  minDate: string = '';
+
+  constructor(private fb: FormBuilder,  private candidateService: CandidateService,private route: ActivatedRoute,private router: Router) {}
 
   ngOnInit(): void {
-    this.initForm()
+    this.initForm();
+    const today = new Date();
+    this.minDate = today.toISOString().split('T')[0];
     this.candidateId = this.route.snapshot.paramMap.get('id');
-      if (this.candidateId) {
+    this.interviewForm.get('candidateId')?.setValue(this.candidateId);
+    console.log(this.candidateId,'candidateid');
+      
+    if (this.candidateId) {
       this.candidateService.getCandidates().subscribe({
         next: (candidates) => {
           const selectedCandidate = candidates.find(candidate => candidate.id?.toString() === this.candidateId);
           if (selectedCandidate) {
             this.candidateName = selectedCandidate.fullName;
+            // Update form control with candidateName
+            this.interviewForm.get('candidateName')?.setValue(selectedCandidate.fullName);
           } 
         },
       });
@@ -36,13 +47,13 @@ export class ScheduleInterviewComponent {
   initForm() {
     this.interviewForm = this.fb.group({
       candidateId: new FormControl('', Validators.required),
-      candidateName: new FormControl('', Validators.required),
+      candidateName: new FormControl(''),
       round: new FormControl('', Validators.required),
       date: new FormControl('', Validators.required),
       time: new FormControl('', Validators.required),
       mode: new FormControl('Online', Validators.required),
       interviewer: new FormControl('', Validators.required),
-      meetingLink: new FormControl(''),
+      meetingLink: new FormControl('', Validators.required),
       remarks: new FormControl(''),
       status: new FormControl('SCHEDULED')
     });
@@ -53,11 +64,14 @@ export class ScheduleInterviewComponent {
       this.interviewForm.markAllAsTouched();
       return;
     }
-    Object.assign(this.interviewMasterRequest, this.interviewForm.value);
-    console.log(this.interviewMasterRequest,'req');
-    return
-    this.candidateService.saveCandidate(this.interviewMasterRequest).subscribe({
+  const payload = this.interviewForm.getRawValue();
+
+  Object.assign(this.interviewMasterRequest, payload);
+
+  console.log(this.interviewMasterRequest, 'req');
+    this.candidateService.scheduleInterview(this.interviewMasterRequest).subscribe({
       next: (res) => {
+          this.router.navigate(['/interview-list']);
           console.log('Interview scheduled successfully:', res);
           alert('Interview scheduled successfully!');
         },
