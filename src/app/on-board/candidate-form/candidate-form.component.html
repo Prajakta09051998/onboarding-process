@@ -45,7 +45,7 @@
             <input type="text" class="form-control" placeholder="Please enter phone number" formControlName="phone">
               <span class="error" *ngIf="
                   (candidateForm.get('phone')?.touched || candidateForm.get('phone')?.dirty) &&
-                  getErrorMessage('phone', 'phone', candidateForm)
+                  getErrorMessage('phone', 'Phone', candidateForm)
                 ">
                 {{
                 getErrorMessage("phone", "Phone", candidateForm)

@@ -9,7 +9,7 @@
         <thead>
           <tr>
             <th>Candidate</th>
-            <th>Round</th>
+            <!-- <th>Round</th> -->
             <th>Date</th>
             <th>Interviewer</th>
             <th>Status</th>
@@ -18,15 +18,32 @@
         </thead>
 
         <tbody>
-          <tr>
-            <td>Rahul Sharma</td>
-            <td>Technical</td>
-            <td>20 Mar</td>
-            <td>Ajay</td>
-            <td><span class="badge bg-warning">Pending</span></td>
+          <tr *ngFor="let interview of interviewList">
+            <td>{{ interview.candidateName }}</td>
+            <!-- <td>{{ interview.round }}</td> -->
+            <td>{{ interview.date }}</td>
+            <td>{{ interview.interviewer }}</td>
             <td>
-              <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#feedbackModal">
+              <span class="badge" [ngClass]="{
+              'bg-warning': (interview.hasFeedback ? interview.feedbackResult : interview.status) === 'SCHEDULED',
+              'bg-success': (interview.hasFeedback ? interview.feedbackResult : interview.status) === 'Shortlisted',
+              'bg-danger': (interview.hasFeedback ? interview.feedbackResult : interview.status) === 'Rejected',
+              'bg-info': (interview.hasFeedback ? interview.feedbackResult : interview.status) === 'Next Round',
+              'bg-secondary': (interview.hasFeedback ? interview.feedbackResult : interview.status) === 'On Hold'
+            }">
+                {{ interview.hasFeedback ? interview.feedbackResult : interview.status }}
+              </span>
+            </td>
+            <td>
+              <!-- Add Feedback -->
+              <button *ngIf="interview.status === 'SCHEDULED' && !interview.hasFeedback" class="btn btn-primary btn-sm"
+                (click)="openFeedback(interview)">
                 Add Feedback
+              </button>
+
+              <!-- View Feedback -->
+              <button *ngIf="interview.hasFeedback" class="btn btn-success btn-sm" (click)="viewFeedback(interview)">
+                View Feedback
               </button>
             </td>
           </tr>
@@ -35,42 +52,74 @@
     </div>
   </div>
 </div>
-<div class="modal fade" id="feedbackModal">
-  <div class="modal-dialog">
-    <div class="modal-content">
+<!-- Feedback Popup -->
+<div class="custom-modal" *ngIf="selectedInterview">
+  <div class="custom-modal-content">
 
-      <div class="modal-header bg-primary text-white">
-        <h5>Add Feedback</h5>
-        <button class="btn-close" data-bs-dismiss="modal"></button>
-      </div>
-
-      <div class="modal-body">
-        <form>
-
-          <div class="mb-3">
-            <label>Rating</label>
-            <input type="number" class="form-control">
-          </div>
-
-          <div class="mb-3">
-            <label>Feedback</label>
-            <textarea class="form-control"></textarea>
-          </div>
-
-          <div class="mb-3">
-            <label>Result</label>
-            <select class="form-select">
-              <option>Selected</option>
-              <option>Rejected</option>
-              <option>Next Round</option>
-            </select>
-          </div>
-
-          <button class="btn btn-success">Submit</button>
-
-        </form>
-      </div>
-
+    <div class="d-flex justify-content-between mb-3">
+      <h5>Interview Feedback</h5>
+      <button class="btn-close" (click)="closePopup()"></button>
     </div>
+
+    <form [formGroup]="feedbackForm">
+
+      <div class="mb-2">
+        <strong>Candidate:</strong> {{ selectedInterview.candidateName }}
+      </div>
+
+      <div class="mb-2">
+        <strong>Round:</strong> {{ selectedInterview.round }}
+      </div>
+      <div class="mb-3">
+        <label>Rating</label>
+
+        <div class="star-rating">
+          <div class="star-rating">
+            <i *ngFor="let star of stars" class="bi" [ngClass]="{
+     'bi-star-fill text-warning': star <= (+feedbackForm.get('rating')?.value || 0),
+     'bi-star text-secondary': star > (+feedbackForm.get('rating')?.value || 0)
+   }" (click)="!isViewMode && setRating(star)">
+            </i>
+          </div>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label>Feedback</label>
+        <textarea class="form-control" formControlName="feedback"></textarea>
+        <span class="error" *ngIf="
+                  (feedbackForm.get('feedback')?.touched || feedbackForm.get('feedback')?.dirty) &&
+                  getErrorMessage('feedback', 'Feedback', feedbackForm)
+                ">
+          {{
+          getErrorMessage("feedback", "Feedback", feedbackForm)
+          }}
+        </span>
+      </div>
+      <div class="mb-3">
+        <label>Status</label>
+        <select class="form-select" formControlName="status">
+          <option value="">Select</option>
+          <option>Shortlisted</option>
+          <option>Rejected</option>
+          <option>Next Round</option>
+          <option>On Hold</option>
+        </select>
+        <span class="error" *ngIf="
+                  (feedbackForm.get('status')?.touched || feedbackForm.get('status')?.dirty) &&
+                  getErrorMessage('status', 'Status', feedbackForm)
+                ">
+          {{
+          getErrorMessage("status", "Status", feedbackForm)
+          }}
+        </span>
+      </div>
+
+      <div class="text-end">
+        <button class="btn btn-secondary me-2" (click)="closePopup()">Cancel</button>
+        <button class="btn btn-success" (click)="submitFeedback()">Submit Feedback</button>
+      </div>
+
+    </form>
+
   </div>
 </div>

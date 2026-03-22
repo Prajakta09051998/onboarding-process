@@ -18,7 +18,7 @@
 
         <tbody>
           <tr *ngFor="let candidate of candidates">
-             <td>{{ candidate.fullName }}</td>
+            <td>{{ candidate.fullName }}</td>
             <td>{{ candidate.position}}</td>
             <td>{{ candidate.experience }} Years</td>
             <td>
@@ -32,14 +32,74 @@
               </span>
             </td>
             <td>
-              <button *ngIf="candidate.status !== 'Rejected'" class="btn btn-sm btn-success me-2" [routerLink]="['../schedule-interview', candidate.id]" [state]="{ candidate: candidate }">Schedule</button>
-              <button class="btn btn-sm btn-info me-2">View</button>
-              <button *ngIf="candidate.status !== 'Rejected'" class="btn btn-sm btn-danger me-2" (click)="candidate.id && rejectCandidate(candidate.id)">Reject</button>
-              <button class="btn btn-sm btn-primary me-2" *ngIf="candidate.status === 'HR_SCHEDULED'" [routerLink]="['../interview-feedback', candidate.id]"> Feedback</button>
+              <button *ngIf="candidate.status !== 'Rejected'" class="btn btn-sm btn-success me-2"
+                [routerLink]="['../schedule-interview', candidate.id]"
+                [state]="{ candidate: candidate }">Schedule</button>
+              <button class="btn btn-sm btn-info me-2" (click)="openViewModal(candidate)">View</button>
+              <button *ngIf="candidate.status !== 'Rejected'" class="btn btn-sm btn-danger me-2"
+                (click)="candidate.id && rejectCandidate(candidate.id)">Reject</button>
+              <button class="btn btn-sm btn-primary me-2" *ngIf="candidate.status === 'HR_SCHEDULED'"
+                [routerLink]="['../interview-feedback', candidate.id]"> Feedback</button>
             </td>
           </tr>
         </tbody>
       </table>
     </div>
+  </div>
+</div>
+<!-- Custom Modal -->
+<div class="custom-modal" *ngIf="selectedCandidate">
+  <div class="custom-modal-content">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <h5>Candidate Details</h5>
+      <button class="btn-close" (click)="closeModal()"></button>
+    </div>
+
+    <div class="table-responsive">
+      <table class="table table-bordered table-striped">
+      <tbody>
+        <tr>
+          <th>Name</th>
+          <td>{{ selectedCandidate.fullName }}</td>
+          <th>Email</th>
+          <td>{{ selectedCandidate.email }}</td>
+        </tr>
+
+        <tr>
+          <th>Phone</th>
+          <td>{{ selectedCandidate.phone }}</td>
+          <th>Experience</th>
+          <td>{{ selectedCandidate.experience }} Years</td>
+        </tr>
+
+        <tr>
+          <th>Position</th>
+          <td>{{ selectedCandidate.position }}</td>
+          <th>Skills</th>
+          <td>{{ selectedCandidate.skills }}</td>
+        </tr>
+
+        <tr>
+          <th>Resume</th>
+          <td>
+            <a [href]="selectedCandidate.resumeUrl" target="_blank">
+              View Resume
+            </a>
+          </td>
+        </tr>
+
+        <tr>
+          <th>Other Info</th>
+          <td colspan="3">
+            {{ selectedCandidate.otherInfo || '-' }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+    <div class="text-end mt-3">
+      <button class="btn btn-secondary" (click)="closeModal()">Close</button>
+    </div>
+
   </div>
 </div>

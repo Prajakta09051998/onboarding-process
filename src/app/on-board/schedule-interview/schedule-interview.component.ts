@@ -48,7 +48,7 @@ export class ScheduleInterviewComponent {
     this.interviewForm = this.fb.group({
       candidateId: new FormControl('', Validators.required),
       candidateName: new FormControl(''),
-      round: new FormControl('', Validators.required),
+      // round: new FormControl('', Validators.required),
       date: new FormControl('', Validators.required),
       time: new FormControl('', Validators.required),
       mode: new FormControl('Online', Validators.required),
@@ -71,7 +71,7 @@ export class ScheduleInterviewComponent {
   console.log(this.interviewMasterRequest, 'req');
     this.candidateService.scheduleInterview(this.interviewMasterRequest).subscribe({
       next: (res) => {
-          this.router.navigate(['/interview-list']);
+          this.router.navigate(['/onBoard/interview-list']);          
           console.log('Interview scheduled successfully:', res);
           alert('Interview scheduled successfully!');
         },

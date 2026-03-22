@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Utility } from '../../constant/utility';
-import { emailPatternValidator, numericPatternValidator } from '../../constant/validations';
+import { emailPatternValidator, emailValidation, numericPatternValidator } from '../../constant/validations';
 import { CandidateService } from '../candidate-service';
 import { Candidate } from '../onBoard-service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-candidate-form',
@@ -17,7 +18,7 @@ export class CandidateFormComponent {
   resumeFile: any;
   candidateMasterRequest: Candidate = new Candidate();
 
-  constructor(private fb: FormBuilder,  private candidateService: CandidateService) {}
+  constructor(private fb: FormBuilder,  private candidateService: CandidateService,private router: Router) {}
 
   ngOnInit() {
     this.initForm();
@@ -26,7 +27,7 @@ export class CandidateFormComponent {
   initForm() {
     this.candidateForm = this.fb.group({
       fullName: new FormControl('', [Validators.required]),
-      email: new FormControl('', [Validators.required, emailPatternValidator]),      
+      email: new FormControl('', [Validators.required, ...emailValidation]),      
       phone: new FormControl('', [Validators.required, Validators.minLength(10), numericPatternValidator(),Validators.pattern(/^[0-9]{10}$/)]),
       experience: new FormControl('', [Validators.required]),
       skills: new FormControl('', [Validators.required]),
@@ -52,6 +53,7 @@ export class CandidateFormComponent {
         console.log('Candidate Saved', res);
         alert('Candidate Saved Successfully');
         this.candidateForm.reset();
+        this.router.navigate(['onBoard/candidate-list']);
       },
       error: (err) => {
         console.error('Error Saving Candidate', err);

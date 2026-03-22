@@ -1,4 +1,4 @@
-import { FormControl } from "@angular/forms";
+import { FormControl, ValidationErrors } from "@angular/forms";
 
 export class Utility {
 
@@ -28,6 +28,25 @@ export class Utility {
 
   return null;
 }
+public static emailPattern(c: FormControl): ValidationErrors | null {
+    let email_regex_1 =
+      // /^(([^|\\<>/()\[\]\,;:@\ "]+(\[^<>()\[\]\,;:\s@\"])*)|(\"\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^0-9<>/()[\]\.,;:\s@\"]{2,4})$/; // Regular Expression 1
+      /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    let email_regex_2 =
+      /^([a-zA-Z0-9_.-])+\@(([a-zA-Z0-9-]{2,9})+\.)+([a-zA-Z0-9]{2,4})+$/; // Regular Expression 2
+
+    if (!c.value) {
+      return null;
+    }
+
+    return email_regex_1.test(c.value) && email_regex_2.test(c.value)
+      ? null
+      : {
+        pattern: {
+          valid: false,
+        },
+      };
+  }
 public static mobileNoPattern(c: FormControl) {
     var mobileFilter = /^([0-9])\1{9}$/;
     if (mobileFilter.test(c.value)) {

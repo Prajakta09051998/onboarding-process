@@ -9,8 +9,9 @@ import { Candidate } from '../onBoard-service';
 })
 export class CandidateListComponent {
   candidates: Candidate[] = [];
+  selectedCandidate: any;
 
-  constructor(private candidateService: CandidateService) {}
+  constructor(private candidateService: CandidateService) { }
 
   ngOnInit() {
     this.candidatesList();
@@ -27,17 +28,25 @@ export class CandidateListComponent {
     });
   }
   rejectCandidate(id: number) {
-  if (confirm('Are you sure you want to reject this candidate?')) {
-    this.candidateService.updateCandidate(id, { status: 'Rejected' })
-      .subscribe({
-        next: () => {
-          this.candidatesList();
-          alert('Candidate rejected successfully');
-        },
-        error: (err) => {
-          console.error('Error rejecting candidate', err);
-        }
-      });
+    if (confirm('Are you sure you want to reject this candidate?')) {
+      this.candidateService.updateCandidate(id, { status: 'Rejected' })
+        .subscribe({
+          next: () => {
+            this.candidatesList();
+            alert('Candidate rejected successfully');
+          },
+          error: (err) => {
+            console.error('Error rejecting candidate', err);
+          }
+        });
+    }
   }
-}
+
+  openViewModal(candidate: any) {
+    this.selectedCandidate = candidate;
+  }
+
+  closeModal() {
+    this.selectedCandidate = null;
+  }
 }

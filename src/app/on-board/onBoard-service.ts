@@ -28,6 +28,8 @@ export class Interview {
   meetingLink: string = '';
   remarks: string = '';
   status: string = '';
+  hasFeedback?: boolean;
+  feedbackResult?: string | null;
 }
 
 

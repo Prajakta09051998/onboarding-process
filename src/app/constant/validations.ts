@@ -10,6 +10,7 @@ import { Utility } from './utility';
 //Form validations
 export var emailRegex = /^(([^|\\<>/()\[\]\,;:@\ "]+(\[^<>()\[\]\,;:\s@\"])*)|(\"\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^0-9<>/()[\]\.,;:\s@\"]{2,4})$/;
 export var requiredValidation = [Validators.required];
+export var emailValidation = [Validators.required, Utility.emailPattern];
 
 export const emailPatternValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
   const emailRegex = /^[a-zA-Z0-9](?!.*\.\.)[a-zA-Z0-9._%+-]*[a-zA-Z0-9]+@[a-zA-Z0-9-]+(\.[a-zA-Z]{2,})+$/;

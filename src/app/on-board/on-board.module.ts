@@ -8,6 +8,7 @@ import { CandidateFormComponent } from './candidate-form/candidate-form.componen
 import { CandidateListComponent } from './candidate-list/candidate-list.component';
 import { ScheduleInterviewComponent } from './schedule-interview/schedule-interview.component';
 import { HiringProcessComponent } from './hiring-process/hiring-process.component';
+import { InterviewListComponent } from './interview-list/interview-list.component';
 
 
 
@@ -17,7 +18,8 @@ import { HiringProcessComponent } from './hiring-process/hiring-process.componen
     CandidateFormComponent,
     CandidateListComponent,
     ScheduleInterviewComponent,
-    HiringProcessComponent
+    HiringProcessComponent,
+    InterviewListComponent
   ],
   imports: [
     CommonModule,

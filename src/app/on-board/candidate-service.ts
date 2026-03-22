@@ -39,8 +39,8 @@ export class CandidateService {
     return this.http.post(`${this.baseUrl}/interviews`, data);
   }
 
-  getInterviews() {
-    return this.http.get(`${this.baseUrl}/interviews`);
+  getInterviews(): Observable<Interview[]> {
+    return this.http.get<Interview[]>(`${this.baseUrl}/interviews`);
   }
 
   // ================= FEEDBACK APIs =================
@@ -49,13 +49,13 @@ export class CandidateService {
     return this.http.post(`${this.baseUrl}/feedbacks`, data);
   }
 
-  getFeedbacks() {
-    return this.http.get(`${this.baseUrl}/feedbacks`);
+  getFeedbacks(): Observable<Feedback[]> {
+    return this.http.get<Feedback[]>(`${this.baseUrl}/feedbacks`);
   }
 
   // ================= HIRING STATUS =================
 
-  getHiringStatus(candidateId: number) {
+  getHiringStatus(candidateId: number): Observable<any> {
     return this.http.get(`${this.baseUrl}/interviews?candidateId=${candidateId}`);
   }
 
